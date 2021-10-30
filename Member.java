@@ -17,11 +17,20 @@ public class Member implements IMusic {
     }
 
     public boolean downloadVideo(Video vdo) {
-        return false;
+        if (vdo != null) {
+            vdoList.add(vdo);
+            return true;
+        }
+        else
+            return false;
     }
 
     public boolean removeVideo(Video vdo) {
-        return false;
+        if (vdoList.contains(vdo)) {
+            vdoList.remove(vdo);
+            return true;
+        } else
+            return false;
     }
 
     public void printMemberInfo() {
@@ -59,21 +68,23 @@ public class Member implements IMusic {
         return true;
     }
 
-    public void setFee(double fee)
-    {
+    public void setFee(double fee){
         this.fee = fee;
     }
 
-    public double getFee()
-    {
+    public double getFee() {
         return fee;
     }
 
-    public int getNumLimitedVDO() {
-        return 0;
+    public void getNumLimitedVDO() {
+
     }
 
     public int numDownloadedVDO() {
-        return 0;
+        if(vdoList.isEmpty()){
+            return 0;
+        }
+        else
+            return vdoList.size();
     }
 }
