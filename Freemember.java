@@ -1,10 +1,11 @@
+import main.java.Member;
+
 import java.util.ArrayList;
 
 class FreeMember extends Member {
     public static final int FREE_LIMITED_VDOs = 3;
-    public String password;
-    public ArrayList<Object> vdoList;
-    public String email;
+    private String password;
+    private String email;
     private int numberLimitedVDOs;
 
     public FreeMember(String email, String password) {
@@ -20,15 +21,15 @@ class FreeMember extends Member {
         }
 
         super.downloadVideo(vdo);
-        numberLimitedVDOs = numberLimitedVDOs + 1;
+        numberLimitedVDOs++;
         return true;
     }
 
     @Override
     public boolean removeVideo(Video vdo) {
-        boolean removed = vdoList.remove(vdo);
+        boolean removed = super.removeVideo(vdo);
         if (removed == true)
-            numberLimitedVDOs = numberLimitedVDOs - 1;
+            numberLimitedVDOs--;
 
         return removed;
     }
@@ -41,9 +42,5 @@ class FreeMember extends Member {
 
     public int getNumberLimitedVideo() {
         return numberLimitedVDOs;
-    }
-
-    public int numDownloadedVDO() {
-        return 0;
     }
 }
